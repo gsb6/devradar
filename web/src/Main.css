@@ -1,0 +1,17 @@
+main {
+  flex: 1;
+}
+
+main ul {
+  list-style: none;
+
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 1fr 1fr;
+}
+
+@media (max-width: 650px) {
+  main ul {
+    grid-template-columns: 1fr;
+  }
+}
