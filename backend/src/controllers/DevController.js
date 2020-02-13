@@ -1,6 +1,8 @@
 const axios = require('axios');
 const Dev = require('../models/Dev');
+
 const stringToArray = require('../utils/StringToArray');
+const { findConnections, sendMessage } = require('../websocket');
 
 // Geralmente tem 5 funções:
 
@@ -43,6 +45,13 @@ module.exports = {
         techs: techsArray,
         location,
       });
+
+      const sendSocketMessageTo = findConnections(
+        { latitude, longitude },
+        techsArray
+      );
+
+      sendMessage(sendSocketMessageTo, 'new-dev', dev);
     }
 
     return res.json(dev);
